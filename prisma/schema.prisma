@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum ClientType {
+  PF
+  PJ
+}
+
+enum TransactionType {
+  CREDIT
+  DEBIT
+}
+
+model Client {
+  id        Int       @id @default(autoincrement())
+  name      String    @db.VarChar(255)
+  document  String    @unique @db.VarChar(50)
+  type      ClientType
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  active    Boolean   @default(true)
+
+  accounts  Account[]
+
+  @@map("clients")
+}
+
+model Account {
+  id              Int              @id @default(autoincrement())
+  clientId        Int
+  bankCode        String           @db.VarChar(20)
+  bankName        String           @db.VarChar(255)
+  branch          String           @db.VarChar(20)
+  accountNumber   String           @db.VarChar(50)
+  accountType     String           @db.VarChar(50)
+  initialBalance  Decimal          @db.Decimal(12, 2)
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  active          Boolean          @default(true)
+
+  client          Client           @relation(fields: [clientId], references: [id])
+  transactions    Transaction[]
+
+  @@unique([bankCode, accountNumber], name: "unique_bank_account")
+  @@map("accounts")
+}
+
+model Transaction {
+  id              Int              @id @default(autoincrement())
+  accountId       Int
+  type            TransactionType
+  amount          Decimal          @db.Decimal(12, 2)
+  description     String           @db.VarChar(255)
+  transactionDate DateTime
+  createdAt       DateTime         @default(now())
+
+  account         Account          @relation(fields: [accountId], references: [id])
+
+  @@map("transactions")
+}
