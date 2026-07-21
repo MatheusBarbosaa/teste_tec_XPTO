@@ -118,7 +118,7 @@ export default function EditarClientePage() {
               <input
                 type="text"
                 name="name"
-                value={formData.name}
+                value={formData.name ?? ''}
                 onChange={handleInputChange}
                 required
                 className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-slate-100 focus:outline-none focus:border-cyan-400"
@@ -130,7 +130,7 @@ export default function EditarClientePage() {
               <input
                 type="email"
                 name="email"
-                value={formData.email}
+                value={formData.email ?? ''}
                 onChange={handleInputChange}
                 required
                 className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-slate-100 focus:outline-none focus:border-cyan-400"
@@ -142,7 +142,7 @@ export default function EditarClientePage() {
               <input
                 type="tel"
                 name="phone"
-                value={formData.phone}
+                value={formData.phone ?? ''}
                 onChange={handleInputChange}
                 required
                 className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-slate-100 focus:outline-none focus:border-cyan-400"
@@ -159,7 +159,7 @@ export default function EditarClientePage() {
               <input
                 type="text"
                 name="addressStreet"
-                value={formData.addressStreet}
+                value={formData.addressStreet ?? ''}
                 onChange={handleInputChange}
                 required
                 className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-slate-100 focus:outline-none focus:border-cyan-400"
@@ -172,7 +172,7 @@ export default function EditarClientePage() {
                 <input
                   type="text"
                   name="addressNumber"
-                  value={formData.addressNumber}
+                  value={formData.addressNumber ?? ''}
                   onChange={handleInputChange}
                   required
                   className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-slate-100 focus:outline-none focus:border-cyan-400"
@@ -197,7 +197,7 @@ export default function EditarClientePage() {
                 <input
                   type="text"
                   name="addressCity"
-                  value={formData.addressCity}
+                  value={formData.addressCity ?? ''}
                   onChange={handleInputChange}
                   required
                   className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-slate-100 focus:outline-none focus:border-cyan-400"
@@ -208,7 +208,7 @@ export default function EditarClientePage() {
                 <input
                   type="text"
                   name="addressState"
-                  value={formData.addressState}
+                  value={formData.addressState ?? ''}
                   onChange={handleInputChange}
                   maxLength={2}
                   required
@@ -222,7 +222,7 @@ export default function EditarClientePage() {
               <input
                 type="text"
                 name="addressZip"
-                value={formData.addressZip}
+                value={formData.addressZip ?? ''}
                 onChange={handleInputChange}
                 placeholder="00000-000"
                 required

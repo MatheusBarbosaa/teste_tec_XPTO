@@ -2,7 +2,8 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { updateAccount } from '@/services/account-service';
 
-export default function EditAccountPage({ params }: { params: Promise<{ clientId: string; accountId: string }> }) {
+export default async function EditAccountPage({ params, searchParams }: { params: Promise<{ clientId: string; accountId: string }>; searchParams: Promise<{ error?: string }> }) {
+  const { error: errorMessage } = await searchParams;
   async function handleSubmit(formData: FormData) {
     'use server';
 
@@ -17,14 +18,19 @@ export default function EditAccountPage({ params }: { params: Promise<{ clientId
     const accountType = formData.get('accountType')?.toString() ?? '';
     const initialBalance = formData.get('initialBalance')?.toString() ?? '0';
 
-    await updateAccount(accountIdNumber, clientIdNumber, {
-      bankCode,
-      bankName,
-      branch,
-      accountNumber,
-      accountType,
-      initialBalance,
-    });
+    try {
+      await updateAccount(accountIdNumber, clientIdNumber, {
+        bankCode,
+        bankName,
+        branch,
+        accountNumber,
+        accountType,
+        initialBalance,
+      });
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Erro desconhecido';
+      redirect(`/clientes/${clientIdNumber}/contas/${accountIdNumber}/editar?error=${encodeURIComponent(message)}`);
+    }
 
     redirect(`/clientes/${clientIdNumber}`);
   }
@@ -41,6 +47,12 @@ export default function EditAccountPage({ params }: { params: Promise<{ clientId
             Voltar
           </Link>
         </div>
+
+        {errorMessage && (
+          <div className="mb-6 rounded-lg border border-red-900 bg-red-950/30 p-4 text-red-200">
+            {errorMessage}
+          </div>
+        )}
 
         <form action={handleSubmit} className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2">
