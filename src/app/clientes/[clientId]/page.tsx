@@ -37,6 +37,9 @@ export default async function ClientDetailsPage({ params }: { params: Promise<{ 
             </p>
           </div>
           <div className="flex gap-2">
+            <Link href={`/clientes/${client.id}/relatorio`} className="rounded-lg border border-slate-700 px-4 py-2 text-sm hover:bg-slate-800">
+              Relatório
+            </Link>
             <Link href={`/clientes/${client.id}/editar`} className="rounded-lg border border-slate-700 px-4 py-2 text-sm hover:bg-slate-800">
               Editar
             </Link>

@@ -18,6 +18,9 @@ export default async function Home() {
             <Link href="/clientes/novo" className="inline-block text-sm text-cyan-400 hover:text-cyan-300 font-medium bg-slate-900 px-3 py-2 rounded">
               + Novo Cliente
             </Link>
+            <Link href="/relatorios" className="inline-block text-sm text-cyan-400 hover:text-cyan-300">
+              → Relatório Geral
+            </Link>
             <Link href="/bank-simulator" className="inline-block text-sm text-cyan-400 hover:text-cyan-300">
               → Simulador bancário
             </Link>
