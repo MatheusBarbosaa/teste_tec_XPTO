@@ -23,3 +23,10 @@ export async function createTransaction(accountId: number, type: 'CREDIT' | 'DEB
     },
   });
 }
+
+export async function findTransactionsByAccountId(accountId: number) {
+  return prisma.transaction.findMany({
+    where: { accountId },
+    orderBy: { transactionDate: 'desc' },
+  });
+}

@@ -18,15 +18,44 @@ enum TransactionType {
 }
 
 model Client {
-  id        Int       @id @default(autoincrement())
-  name      String    @db.VarChar(255)
-  document  String    @unique @db.VarChar(50)
-  type      ClientType
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  active    Boolean   @default(true)
+  id               Int       @id @default(autoincrement())
+  
+  // Dados básicos
+  name             String    @db.VarChar(255)
+  type             ClientType
+  email            String?   @db.VarChar(255)
+  phone            String?   @db.VarChar(20)
+  
+  // Dados de endereço
+  addressStreet    String?   @db.VarChar(255)
+  addressNumber    String?   @db.VarChar(20)
+  addressComplement String?   @db.VarChar(255)
+  addressCity      String?   @db.VarChar(255)
+  addressState     String?   @db.VarChar(2)
+  addressZip       String?   @db.VarChar(10)
+  
+  // PF: CPF (único)
+  cpf              String?   @unique @db.VarChar(14)
+  
+  // PF: Dados pessoais
+  gender           String?   @db.VarChar(1)
+  birthDate        DateTime?
+  
+  // PJ: CNPJ (único)
+  cnpj             String?   @unique @db.VarChar(18)
+  
+  // PJ: Dados jurídicos
+  legalName        String?   @db.VarChar(255)
+  foundedDate      DateTime?
+  
+  // Movimentação inicial (saldo inicial)
+  initialBalance   Decimal   @default(0) @db.Decimal(12, 2)
+  
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  active           Boolean   @default(true)
 
-  accounts  Account[]
+  accounts         Account[]
 
   @@map("clients")
 }
