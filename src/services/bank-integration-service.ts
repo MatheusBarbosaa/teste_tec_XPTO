@@ -1,6 +1,6 @@
 import { BankTransactionInput } from '@/utils/validation';
 import { findAccountByBankCodeAndNumber, createTransaction } from '@/repositories/transaction-repository';
-
+//arquivo chefe - transações
 export async function processBankTransaction(input: BankTransactionInput) {
   const account = await findAccountByBankCodeAndNumber(input.bankCode, input.accountNumber);
 

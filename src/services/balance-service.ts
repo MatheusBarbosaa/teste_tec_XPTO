@@ -1,5 +1,5 @@
 import { Decimal } from '@prisma/client/runtime/library';
-
+//calcula todo o saldo
 export interface BalanceCalculation {
   initialBalance: Decimal;
   totalCredits: Decimal;

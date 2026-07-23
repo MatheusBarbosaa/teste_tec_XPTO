@@ -5,7 +5,7 @@ import {
   findClientById,
   findDuplicateAccount,
 } from '@/repositories/account-repository';
-
+//chefe - gerenciamento de contas
 export type AccountInput = {
   clientId: number;
   bankCode: string;

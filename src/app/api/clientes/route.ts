@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import * as clientService from '@/services/client-service';
 import { CreateClientSchema } from '@/utils/validation';
 import { ZodError } from 'zod';
-
+//serve todos os cientes
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();

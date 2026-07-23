@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as clientService from '@/services/client-service';
-
+// serve apenas um cliente específico
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ clientId: string }> }
