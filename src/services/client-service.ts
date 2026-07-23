@@ -2,7 +2,7 @@ import { prisma } from '@/lib/prisma';
 import * as clientRepository from '@/repositories/client-repository';
 import { ClientType } from '@prisma/client';
 import { Decimal } from '@prisma/client/runtime/library';
-
+//validação cadastral
 export interface CreateClientPFInput {
   type: 'PF';
   name: string;
